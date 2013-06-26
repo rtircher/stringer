@@ -1,0 +1,11 @@
+#! /bin/bash
+
+git remote add upstream git@github.com:swanson/stringer.git
+git remote add heroku git@heroku.com:rtircher-stringer.git
+git remote add beverly-heroku git@heroku.com:beverly-stringer.git
+
+echo "You should see the following remotes: beverly-heroku, heroku, origin, and upstream"
+
+echo
+echo "--> Remotes set:"
+git remote

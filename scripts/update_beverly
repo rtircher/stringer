@@ -1,0 +1,9 @@
+#! /bin/bash
+
+echo "--> updating from upstream"
+scripts/update_from_upstream
+
+echo "--> updating heroku"
+git push beverly-heroku master
+heroku run rake db:migrate --remote beverly-heroku
+heroku restart --remote beverly-heroku
