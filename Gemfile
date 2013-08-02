@@ -16,7 +16,6 @@ gem "feedzirra", github: "swanson/feedzirra"
 gem "loofah"
 gem "nokogiri"
 gem "feedbag", github: "dwillis/feedbag"
-gem "coveralls", require: false
 gem "highline", require: false
 gem "thread"
 
@@ -29,7 +28,8 @@ group :development do
   gem "sqlite3"
 end
 
-group(:development, :testing) do
+group(:development, :test) do
+  gem "coveralls", require: false
   gem "pry"
   gem "rspec"
   gem "rspec-html-matchers"
@@ -38,4 +38,11 @@ group(:development, :testing) do
   gem "racksh"
   gem "faker"
   gem "foreman"
+end
+
+group :heroku do
+  gem "excon"
+  gem "formatador"
+  gem "netrc"
+  gem "rendezvous"
 end

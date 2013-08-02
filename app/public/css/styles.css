@@ -256,13 +256,6 @@ p.story-details {
   font-weight: 300;
 }
 
-.story-body img {
-  margin: 16px auto;
-  display: block;
-  padding: 5px;
-  border: 1px solid #e5e5e5;
-}
-
 .story-body ul {
   list-style-type: disc;
 }
@@ -271,10 +264,29 @@ p.story-details {
   margin-bottom: 16px;
 }
 
+/* Wordpress hacks */
+.story-body img.alignright {
+  display: block;
+  float: right;
+  margin-left: 20px;
+}
+
+.story-body img.alignleft {
+  display: block;
+  float: left;
+  margin-right: 20px;
+}
+
+.story-body img.aligncenter {
+  display: block;
+}
+/* end Wordpress hacks */
+
 .story-actions-container {
   border-top: 2px solid #FAF2E5;
   height: 28px;
   line-height: 30px;
+  clear: both;
 }
 
 .story-actions {

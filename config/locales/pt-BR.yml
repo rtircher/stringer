@@ -46,8 +46,8 @@ pt-BR:
       subtitle: ! 'Existe apenas um usuário: você.'
       title: Stringer é
   flash:
-    cookies_required: 
-    js_required: 
+    cookies_required: Bem, isso é estranho. É necessário habilitar Cookies para que o aplicativo funcione corretamente.
+    js_required: Bem, isso é estranho. É necessário habilitar Javascript para que o aplicativo funcione corretamente.
   import:
     description: ! '%{link} seus feeds do Google Reader e importe-os.'
     export: Exportar
@@ -70,7 +70,7 @@ pt-BR:
       mark_all: Marcar tudo como lido
       refresh: Atualizar
       view_feeds: Visualizar feeds
-      starred_stories: 
+      starred_stories: Histórias favoritas
     feed:
       last_fetched:
         never: Nunca
@@ -84,7 +84,7 @@ pt-BR:
       archived_stories: Arquivo de histórias
       feeds: Visualizar feeds
       home: Voltar para histórias
-      starred_stories: 
+      starred_stories: Histórias favoritas
     shortcuts:
       keys:
         jk: História próxima/anterior
@@ -96,8 +96,9 @@ pt-BR:
         shifta: Marcar tudo como lido
         v: Ir para a URL da história
         s: 
-        left: 
+        left: Página anterior
         right: 
+        a: Adicione um feed
       title: Atalhos de teclado
     zen:
       archive: visualizar todos os itens

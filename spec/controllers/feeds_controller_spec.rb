@@ -117,11 +117,12 @@ describe "FeedsController" do
 
     it "returns an OPML file" do
       ExportToOpml.any_instance.should_receive(:to_xml).and_return(some_xml)
-    
+
       get "/feeds/export"
 
       last_response.body.should eq some_xml
-      last_response.header["Content-Type"].should include 'xml'
+      last_response.header["Content-Type"].should include 'application/xml'
+      last_response.header["Content-Disposition"].should == "attachment; filename=\"stringer.opml\""
     end
   end
 end
