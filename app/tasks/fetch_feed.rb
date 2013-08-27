@@ -13,10 +13,10 @@ class FetchFeed
 
   def fetch
     begin
-      raw_feed = @parser.fetch_and_parse(@feed.url, user_agent: "Stringer", if_modified_since: @feed.last_fetched)
+      raw_feed = @parser.fetch_and_parse(@feed.url, user_agent: "Stringer", if_modified_since: @feed.last_fetched, timeout: 30)
 
       if raw_feed == 304
-        @logger.info "Feed has not been modified since last fetch" if @logger
+        @logger.info "#{@feed.url} has not been modified since last fetch" if @logger
       else
         new_entries_from(raw_feed).each do |entry|
           StoryRepository.add(entry, @feed)
@@ -35,11 +35,11 @@ class FetchFeed
 
   private
   def new_entries_from(raw_feed)
-    finder = FindNewStories.new(raw_feed, @feed.last_fetched, latest_url)
+    finder = FindNewStories.new(raw_feed, @feed.last_fetched, latest_entry_id)
     finder.new_stories
   end
 
-  def latest_url
-    return @feed.stories.first.permalink unless @feed.stories.empty?
+  def latest_entry_id
+    return @feed.stories.first.entry_id unless @feed.stories.empty?
   end
 end
