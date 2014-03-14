@@ -1,5 +1,5 @@
 class Feed < ActiveRecord::Base
-  has_many :stories, order: "published desc", dependent: :delete_all
+  has_many :stories, -> {order "published desc"} , dependent: :delete_all
 
   validates_uniqueness_of :url
 
@@ -16,6 +16,14 @@ class Feed < ActiveRecord::Base
   def status_bubble
     return :yellow if status == :red && stories.any?
     status
+  end
+
+  def unread_stories
+    stories.where('is_read = ?', false)
+  end
+
+  def has_unread_stories
+    unread_stories.any?
   end
 
   def as_fever_json

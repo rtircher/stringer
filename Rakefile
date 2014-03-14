@@ -1,9 +1,16 @@
-require "sinatra/activerecord/rake"
-require "rubygems"
 require "bundler"
-Bundler.require
+Bundler.setup
+
+require "rubygems"
+require "net/http"
+require 'active_record'
+require 'delayed_job'
+require 'delayed_job_active_record'
+
+require "sinatra/activerecord/rake"
 
 require "./app"
+require_relative "./app/jobs/fetch_feed_job"
 require_relative "./app/tasks/fetch_feeds"
 require_relative "./app/tasks/change_password"
 require_relative "./app/tasks/remove_old_stories.rb"
@@ -11,6 +18,18 @@ require_relative "./app/tasks/remove_old_stories.rb"
 desc "Fetch all feeds."
 task :fetch_feeds do
   FetchFeeds.new(Feed.all).fetch_all
+end
+
+desc "Lazily fetch all feeds."
+task :lazy_fetch do
+  if ENV['APP_URL']
+    uri = URI(ENV['APP_URL'])
+    Net::HTTP.get_response(uri)
+  end
+
+  FeedRepository.list.each do |feed|
+    Delayed::Job.enqueue FetchFeedJob.new(feed.id)
+  end
 end
 
 desc "Fetch single feed"
@@ -25,7 +44,12 @@ end
 
 desc "Work the delayed_job queue."
 task :work_jobs do
-  Delayed::Worker.new(:min_priority => ENV['MIN_PRIORITY'], :max_priority => ENV['MAX_PRIORITY']).start
+  Delayed::Job.delete_all
+
+  3.times do
+    Delayed::Worker.new(:min_priority => ENV['MIN_PRIORITY'], 
+      :max_priority => ENV['MAX_PRIORITY']).start
+  end
 end
 
 desc "Change your password"
@@ -130,7 +154,7 @@ task :deploy do
 
   #heroku addons:open scheduler
   Formatador.display_lines([
-    "[negative]<> Add `[bold]rake fetch_feeds[/][negative]` hourly task at [underline]https://api.heroku.com/apps/#{app_data['id']}/addons/scheduler:standard[/]",
+    "[negative]<> Add `[bold]rake lazy_fetch[/][negative]` hourly task at [underline]https://api.heroku.com/apps/#{app_data['id']}/addons/scheduler:standard[/]",
     "[negative]<> Impatient? After adding feeds, immediately fetch the latest with `heroku run rake fetch_feeds -a #{app_data['name']}`",
     "[negative]<> stringer available at [underline]#{app_data['web_url']}[/]"
   ])

@@ -43,6 +43,10 @@ class StoryRepository
     unread.where('id > ?', since_id)
   end
 
+  def self.feed(feed_id)
+    Story.where('feed_id = ?', feed_id).order("published desc").includes(:feed)
+  end
+
   def self.read(page = 1)
     Story.where(is_read: true).includes(:feed)
       .order("published desc").page(page).per_page(20)
@@ -79,7 +83,7 @@ class StoryRepository
   end
 
   def self.sanitize(content)
-    Loofah.fragment(content.gsub(/<wbr>/i, "")).scrub!(:prune).to_s
+    Loofah.fragment(content.gsub(/<wbr\s*>/i, "")).scrub!(:prune).to_s
   end
 
   def self.expand_absolute_urls(content, base_url)
