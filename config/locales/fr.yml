@@ -30,6 +30,13 @@ fr:
         already_subscribed_error: Vous suivez déjà ce flux...
         feed_not_found_error: Nous n'avons pas pu trouver ce flux. Essayez de nouveau.
       title: Besoin de nouveaux articles ?
+    edit:
+      fields:
+        feed_name: 
+        feed_url: 
+        submit: 
+      flash:
+        updated_successfully: 
     index:
       add: ajouter
       add_some_feeds: Vous devriez %{add} quelques flux.
@@ -89,6 +96,7 @@ fr:
     shortcuts:
       keys:
         a: Ajouter un flux
+        f: 
         jk: Article suivant/précédent
         left: Page précédente
         m: Marquer ceci comme lu/non lu
@@ -134,6 +142,9 @@ fr:
     as_read: comme lu
     click_to_read: (cliquer pour lire)
     description: Nous récupérons quelques articles à lire, donnez-nous une seconde.
+    heroku_hourly_task: 
+    heroku_one_more_thing: 
+    heroku_scheduler: 
     mark_all: tout marquer
     ready: Ok, c'est prêt !
     refresh: rafraîchir

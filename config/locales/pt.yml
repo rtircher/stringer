@@ -30,6 +30,13 @@ pt:
         already_subscribed_error: Você já subscreveu esta feed...
         feed_not_found_error: Não foi possível encontrar a feed. Tente novamente.
       title: Precisa de novas histórias?
+    edit:
+      fields:
+        feed_name: 
+        feed_url: 
+        submit: 
+      flash:
+        updated_successfully: 
     index:
       add: adicionar
       add_some_feeds: Ei, você deveria %{add} algumas feeds.
@@ -89,6 +96,7 @@ pt:
     shortcuts:
       keys:
         a: 
+        f: 
         jk: Próxima história/História anterior
         left: 
         m: Marcar item como lido/não lido
@@ -134,6 +142,9 @@ pt:
     as_read: como lido
     click_to_read: (clique para ler)
     description: Estamos a actualizar as suas histórias, dê-nos um segundo.
+    heroku_hourly_task: 
+    heroku_one_more_thing: 
+    heroku_scheduler: 
     mark_all: marcar todos
     ready: Ok, está pronto!
     refresh: atualizar

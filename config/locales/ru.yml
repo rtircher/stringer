@@ -30,6 +30,13 @@ ru:
         already_subscribed_error: Вы уже подписаны на этот фид...
         feed_not_found_error: Мы не смогли найти этот фид. Попробуйте еще раз.
       title: Нужны новые истории?
+    edit:
+      fields:
+        feed_name: 
+        feed_url: 
+        submit: 
+      flash:
+        updated_successfully: 
     index:
       add: добавить
       add_some_feeds: Эй, ​​Вы должны %{add} некоторые фид каналы.
@@ -89,6 +96,7 @@ ru:
     shortcuts:
       keys:
         a: 
+        f: 
         jk: Перейти на следующую/предыдущую историю
         left: Предыдущая страница
         m: Пометить как прочитанное/непрочитанное
@@ -134,6 +142,9 @@ ru:
     as_read: как прочитанное
     click_to_read: (нажмите, чтобы прочитать)
     description: Мы получаем ваши истории для чтения, секунду.
+    heroku_hourly_task: 
+    heroku_one_more_thing: 
+    heroku_scheduler: 
     mark_all: пометить все
     ready: Все готово!
     refresh: обновить

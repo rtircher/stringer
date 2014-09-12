@@ -1,10 +1,10 @@
 # Stringer
 
-[![Build Status](https://travis-ci.org/swanson/stringer.png)](https://travis-ci.org/swanson/stringer)
-[![Code Climate](https://codeclimate.com/github/swanson/stringer.png)](https://codeclimate.com/github/swanson/stringer)
-[![Coverage Status](https://coveralls.io/repos/swanson/stringer/badge.png?branch=master)](https://coveralls.io/r/swanson/stringer)
+[![Build Status](http://img.shields.io/travis/swanson/stringer.svg)](https://travis-ci.org/swanson/stringer)
+[![Code Climate](http://img.shields.io/codeclimate/github/swanson/stringer.svg)](https://codeclimate.com/github/swanson/stringer)
+[![Coverage Status](http://img.shields.io/coveralls/swanson/stringer.svg)](https://coveralls.io/r/swanson/stringer)
 
-### A [work-in-progress] self-hosted, anti-social RSS reader.
+### A self-hosted, anti-social RSS reader.
 
 Stringer has no external dependencies, no social recommendations/sharing, and no fancy machine learning algorithms.
 
@@ -18,42 +18,12 @@ But it does have keyboard shortcuts and was made with love!
 
 Stringer is a Ruby (2.0.0+) app based on Sinatra, ActiveRecord, PostgreSQL, Backbone.js and DelayedJob.
 
-Instructions are provided for deploying to Heroku (runs fine on the free plan) but Stringer can be deployed anywhere that supports Ruby (setup instructions for a Linux-based VPS are provided [here](/docs/VPS.md), and for OpenShift, provided [here](/docs/OpenShift.md)).
+[![Deploy to Heroku](https://cdn.herokuapp.com/deploy/button.svg)](https://heroku.com/deploy)
 
-```sh
-git clone git://github.com/swanson/stringer.git
-cd stringer
-heroku create
-git push heroku master
+Stringer will run just fine on the Heroku free plan.
 
-heroku config:set APP_URL=`heroku apps:info | grep -o 'http[^"]*'`
-heroku config:set SECRET_TOKEN=`openssl rand -hex 20`
-
-heroku run rake db:migrate
-heroku restart
-
-heroku addons:add scheduler
-heroku addons:open scheduler
-```
-
-Add an hourly task that runs `rake lazy_fetch` (if you are not on Heroku you may want `rake fetch_feeds` instead).
-
-Load the app and follow the instructions to import your feeds and start using the app.
-
----
-
-In the event that you need to change your password, run `heroku run rake change_password` from the app folder.
-
-## Updating the app
-
-From the app's directory:
-
-```sh
-git pull
-git push heroku master
-heroku run rake db:migrate
-heroku restart
-```
+Instructions are provided for deploying to [Heroku manually](/docs/Heroku.md), to any Ruby 
+compatible [Linux-based VPS](/docs/VPS.md), and to [OpenShift](/docs/OpenShift.md).
 
 ## Niceties
 
@@ -107,7 +77,7 @@ To set your locale on Heroku, run `heroku config:set LOCALE=en`.
 
 If you would like to translate Stringer to your preferred language, please use [LocaleApp](http://www.localeapp.com/projects/4637).
 
-### Clean up old read stories
+### Clean up old read stories on Heroku
 
 If you are on the Heroku free plan, there is a 10k row limit so you will
 eventually run out of space.
@@ -126,7 +96,11 @@ Run the Javascript tests with `rake test_js` and then open a browser to `http://
 
 ### Getting Started
 
-To get started using Stringer for development simply run the following:
+To get started using Stringer for development you first need to install `foreman`.
+
+    gem install foreman
+
+Then run the following commands.
 
 ```sh
 bundle install
@@ -140,10 +114,12 @@ You can launch an interactive console (ala `rails c`) using `racksh`.
 
 ## Acknowledgements
 
-Most of the heavy-lifting is done by [`feedzirra`](https://github.com/pauldix/feedzirra) and [`feedbag`](https://github.com/dwillis/feedbag).
+Most of the heavy-lifting is done by [`feedjira`](https://github.com/feedjira/feedjira) and [`feedbag`](https://github.com/dwillis/feedbag).
 
 General sexiness courtesy of [`Twitter Bootstrap`](http://twitter.github.io/bootstrap/) and [`Flat UI`](http://designmodo.github.io/Flat-UI/).
 
 ## Contact
 
-Matt Swanson, [mdswanson.com](http://mdswanson.com) [@_swanson](http://twitter.com/_swanson)
+Matt Swanson, [mdswanson.com](http://mdswanson.com), [@_swanson](http://twitter.com/_swanson)
+
+Victor Koronen, [victor.koronen.se](http://victor.koronen.se/), [@victorkoronen](https://twitter.com/victorkoronen)
