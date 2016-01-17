@@ -12,7 +12,7 @@ class Story < ActiveRecord::Base
   end
 
   def lead
-    strip_html(self.body)[0,100]
+    strip_html(self.body)[0, 100]
   end
 
   def source
@@ -23,7 +23,7 @@ class Story < ActiveRecord::Base
     I18n.l(self.published)
   end
 
-  def as_json(options = {})
+  def as_json(_options = {})
     super(methods: [:headline, :lead, :source, :pretty_date])
   end
 
