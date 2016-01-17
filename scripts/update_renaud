@@ -4,6 +4,6 @@ echo "--> updating from upstream"
 scripts/update_from_upstream
 
 echo "--> updating heroku"
-git push heroku master
+git push heroku master -f
 heroku run rake db:migrate --app rtircher-stringer
 heroku restart --app rtircher-stringer
